@@ -22,6 +22,12 @@ def export_books_to_csv(books: list[Book], filename: str = "data/books.csv"):
     print(f"✅ Export terminé : {filename}")
 
 def export_games_to_csv(games, filepath):
+    if not games:
+        print("⚠️ Aucun jeu à exporter.")
+        return
+    # Crée le dossier si nécessaire
+    os.makedirs(os.path.dirname(filepath), exist_ok=True)
+    # Exporter les jeux dans un fichier CSV
     with open(filepath, 'w', newline='', encoding='utf-8') as f:
         writer = csv.DictWriter(f, fieldnames=["title", "price", "availability", "rating"])
         writer.writeheader()
