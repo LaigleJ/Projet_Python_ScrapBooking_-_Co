@@ -2,7 +2,7 @@
 
 import csv
 from .book import Book
-import os  # Si tu veux créer automatiquement les dossiers
+import os 
 
 def export_books_to_csv(books: list[Book], filename: str = "data/books.csv"):
     if not books:
@@ -20,3 +20,10 @@ def export_books_to_csv(books: list[Book], filename: str = "data/books.csv"):
             writer.writerow(book.to_dict())
 
     print(f"✅ Export terminé : {filename}")
+
+def export_games_to_csv(games, filepath):
+    with open(filepath, 'w', newline='', encoding='utf-8') as f:
+        writer = csv.DictWriter(f, fieldnames=["title", "price", "availability", "rating"])
+        writer.writeheader()
+        for game in games:
+            writer.writerow(game.to_dict())
